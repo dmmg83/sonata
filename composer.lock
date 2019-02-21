@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3354de836105a13b331e28c6d246a364",
+    "content-hash": "11454907c90218621f6cd2fca5954b58",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -3092,6 +3092,47 @@
     ],
     "packages-dev": [
         {
+            "name": "remg/generator-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Remg/GeneratorBundle.git",
+                "reference": "7bb472884dcea0a6d63a7841dc4b71a9b3b23302"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Remg/GeneratorBundle/zipball/7bb472884dcea0a6d63a7841dc4b71a9b3b23302",
+                "reference": "7bb472884dcea0a6d63a7841dc4b71a9b3b23302",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/doctrine-bundle": "^1.6",
+                "doctrine/orm": "^2.5",
+                "php": ">=5.5.9",
+                "symfony/framework-bundle": "~2.7|~3.0"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "dev-master",
+                "phpunit/phpunit": "5.6.*",
+                "symfony/phpunit-bridge": "^3.2"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Remg\\GeneratorBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Code generation tool for Symfony3.",
+            "time": "2017-09-20T10:40:46+00:00"
+        },
+        {
             "name": "sensio/generator-bundle",
             "version": "v3.1.6",
             "source": {
@@ -3210,7 +3251,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "remg/generator-bundle": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
