@@ -54,3 +54,5 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Municipio }
         public: true
+        calls:
+            - [ setTemplate, [edit, AppBundle:Dependientes:departamentos.html.twig]]

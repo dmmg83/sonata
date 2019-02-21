@@ -2,11 +2,13 @@
 
 namespace AppBundle\Admin;
 
-use Sonata\AdminBundle\Admin\AbstractAdmin;
-use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use AppBundle\Admin\Listeners\AddDepartamentoFieldSubscriber;
 
 class MunicipioAdmin extends AbstractAdmin
 {
@@ -16,7 +18,7 @@ class MunicipioAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            
+
             ->add('nombre')
         ;
     }
@@ -27,7 +29,7 @@ class MunicipioAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            
+
             ->add('nombre')
             ->add('_action', null, array(
                 'actions' => array(
@@ -44,9 +46,27 @@ class MunicipioAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper
+        $builder = $formMapper->getFormBuilder();
+        $formOptions = array(
+            'placeholder' => 'Selecciona...',
+            'choices'  => [
+                'Maybe' => null,
+                'Yes' => true,
+                'No' => false,
+            ],
+            'choice_attr' => function() {
+                // adds a class like attending_yes, attending_no, etc
+                return ['aux' => '123'];
+            },
+        );
+
+        
+        
+        $builder
+            ->addEventSubscriber(new AddDepartamentoFieldSubscriber())
             ->add('deptmuni')
             ->add('nombre')
+            //->add('pais', ChoiceType::class, $formOptions)
         ;
     }
 
@@ -56,8 +76,9 @@ class MunicipioAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            
+
             ->add('nombre')
         ;
     }
+
 }

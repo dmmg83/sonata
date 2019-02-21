@@ -96,5 +96,28 @@ class Municipio
     {
         return $this->deptmuni;
     }
+
+    
+    private $pais;
+
+    /**
+     * Get the value of pais
+     */ 
+    public function getPais()
+    {
+        return $this->pais;
+    }
+
+    /**
+     * Set the value of pais
+     *
+     * @return  self
+     */ 
+    public function setPais($pais)
+    {
+        $this->pais = $pais;
+
+        return $this;
+    }
 }
 

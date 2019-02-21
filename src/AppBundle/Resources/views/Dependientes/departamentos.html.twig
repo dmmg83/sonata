@@ -1,0 +1,33 @@
+{% extends 'SonataAdminBundle:CRUD:base_edit.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            var pais = $("#{{ admin.uniqId }}_pais");
+            pais.change(updateDepartamentos()); // Bind the function to updateDepartamentos
+            pais.change(); // Manual trigger to update categories in Document load.
+
+            function updateDepartamentos(){
+                return function () {
+                    var tagId = $("#{{ admin.uniqId }}_pais option:selected").val();
+                    var deptmuni = $("#{{ admin.uniqId }}_deptmuni");
+                    deptmuni.empty();
+                    deptmuni.trigger("liszt:updated");
+
+                    var url = "{{ url('ajax_departamentos') }}/" + tagId;
+                    
+                    alert(url);
+                    
+                    $.post(url, { tagId: tagId }, function(data){
+                        deptmuni.empty().append(data);
+                        deptmuni.trigger("liszt:updated");
+                    },"text");
+
+                    deptmuni.val("option:first").attr("selected", true);
+                    
+                };
+            }
+        });
+    </script>
+{% endblock %}
