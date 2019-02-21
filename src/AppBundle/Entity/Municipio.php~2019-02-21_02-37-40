@@ -1,0 +1,73 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Municipio
+ *
+ * @ORM\Table(name="municipio")
+ * @ORM\Entity
+ */
+class Municipio
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var \AppBundle\Entity\Departamento
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Departamento", inversedBy="municipios")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="deptmuni_id", referencedColumnName="id")
+     * })
+     */
+    private $deptmuni;
+
+    function __toString()
+    {
+        return (string) $this->nombre;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set deptmuni
+     *
+     * @param \AppBundle\Entity\Departamento $deptmuni
+     *
+     * @return Municipio
+     */
+    public function setDeptmuni(\AppBundle\Entity\Departamento $deptmuni = null)
+    {
+        $this->deptmuni = $deptmuni;
+
+        return $this;
+    }
+
+    /**
+     * Get deptmuni
+     *
+     * @return \AppBundle\Entity\Departamento
+     */
+    public function getDeptmuni()
+    {
+        return $this->deptmuni;
+    }
+}
+

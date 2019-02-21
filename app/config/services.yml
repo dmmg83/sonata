@@ -33,3 +33,24 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    app.admin.pais:
+        class: AppBundle\Admin\PaisAdmin
+        arguments: [~, AppBundle\Entity\Pais, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Pais }
+        public: true
+
+    app.admin.departamento:
+        class: AppBundle\Admin\DepartamentoAdmin
+        arguments: [~, AppBundle\Entity\Departamento, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Departamento }
+        public: true
+
+    app.admin.municipio:
+        class: AppBundle\Admin\MunicipioAdmin
+        arguments: [~, AppBundle\Entity\Municipio, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Municipio }
+        public: true
